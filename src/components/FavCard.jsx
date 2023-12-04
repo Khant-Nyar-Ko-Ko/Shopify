@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
-import { FaHeart } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
-import { addToFav } from "../services/productSlice";
-import { addToCart } from "../services/cartSlice";
+import { removeFromFav } from "../services/productSlice";
 
-const Card = ({product}) => {
+const FavCard = ({ product }) => {
   const dispatch = useDispatch();
+
   return (
     <div className=" w-[300px] gap-2 m rounded shadow bg-slate-50 h-auto py-5">
       <div className=" w-[100%] p-2 object-contain h-auto flex justify-center items-center">
@@ -20,19 +20,16 @@ const Card = ({product}) => {
           {product?.description.substring(0, 90)}...
         </p>
         <div className=" flex justify-center gap-2 mt-2">
-          <button onClick={() => dispatch(addToCart(product))} className=" bg-[#1F2937] text-white px-4 py-1 rounded">
-            Add To Cart
-          </button>
           <button
-            onClick={() => dispatch(addToFav(product))}
-            className=" bg-[#1F2937] text-white px-4 py-1 rounded hover:text-red-500"
+            onClick={() => dispatch(removeFromFav(product))}
+            className=" bg-[#1F2937] text-white px-4 py-1 rounded"
           >
-            <FaHeart />
+            <FaTrash />
           </button>
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default Card
+export default FavCard;

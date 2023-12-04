@@ -1,13 +1,15 @@
 import { FaShoppingCart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const cart = useSelector(state => state.cart);
   return (
     <>
       <nav className="bg-gray-800 p-4 w-full fixed top-0 left-0 z-10">
         <div className="container mx-auto flex justify-between items-center">
-          <Link to={'/'}>
+          <Link to={"/"}>
             <div className="text-white font-bold text-lg">Shopify</div>
           </Link>
           <div className=" flex justify-center items-center gap-5">
@@ -21,10 +23,12 @@ const Navbar = () => {
               Contact
             </a>
             <div className=" flex gap-2 items-center">
-              <button className=" flex justify-center items-center gap-2 text-[#1F2937] bg-white px-2 py-1 rounded border hover:text-white hover:bg-[#1F2937]">
-                <FaShoppingCart />
-                <p>10</p>
-              </button>
+              <Link to={'/cart'}>
+                <button className=" flex justify-center items-center gap-2 text-[#1F2937] bg-white px-2 py-1 rounded border hover:text-white hover:bg-[#1F2937]">
+                  <FaShoppingCart />
+                  <p>{cart?.length}</p>
+                </button>
+              </Link>
               <Link to={"/fav"}>
                 <button className=" flex justify-center items-center gap-2 text-red-500 bg-white px-2 py-1 rounded border hover:text-white hover:bg-[#1F2937]">
                   <FaHeart />
